@@ -2,10 +2,9 @@ const http = require("http");
 const task = require("./task");
 
 const PORT = process.env.PORT || 8888;
-const processID = () => Math.floor(Math.random() * 9000) + 1000;
 
-function process() {
-  const ID = processID();
+function load() {
+  const ID = Math.floor(Math.random() * 9000) + 1000;
   console.log(`\n[^${ID}`);
   const start = new Date();
 
@@ -17,8 +16,9 @@ function process() {
 }
 
 const server = http.createServer();
+
 server.on("request", (req, res) => {
-  process();
+  load();
   res.write(`done.\n\n`);
   res.end();
 });
