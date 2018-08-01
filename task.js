@@ -1,36 +1,27 @@
 require("colors");
 
-const colors = [
-  "red",
-  "green",
-  "yellow",
-  "blue",
-  "magenta",
-  "cyan",
-  "white",
-  "gray"
-];
+const TICKS = 100000;
+const STEPS = 30;
+const colors = ["red", "green", "yellow", "blue", "magenta", "cyan", "gray"];
 
-const write = str => process.stdout.write(str);
-const writeln = str => write(`${str}\n`);
+const out = str => process.stdout.write(str);
+const taskID = () => Math.floor(Math.random() * 9000) + 1000;
 
 function step(color) {
-  const TICKS = 1000000;
   new Array(TICKS).fill().map(n => n++);
-  write(`.`[color]);
+  out("."[color]);
 }
 
 function task() {
   const start = new Date();
-  const n = start % (1000 * 60);
-  const STEPS = 30;
-  const color = colors[start % 8];
-  write(`start task ${n}`[color]);
+  const n = taskID();
+  const color = colors[Math.floor(Math.random() * colors.length)];
+  out(`[^${n}`[color]);
 
   new Array(STEPS).fill().map(() => step(color));
-  const time = new Date() - start;
 
-  writeln(`stop task ${n} (${time}ms)`[color]);
+  const time = new Date() - start;
+  out(`${n} @ ${time / 1000}]`[color]);
   return time;
 }
 
