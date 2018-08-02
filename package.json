@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "start": "node --experimental-worker app.js",
-    "test": "clinic doctor --on-port='autocannon -c100 http://localhost:8888' -- node ./server.js"
+    "test": "clinic doctor --on-port='autocannon -c100 http://localhost:8888' -- node ./server.js",
+    "build": "git pull && npm iinstall"
   },
   "repository": {
     "type": "git",
