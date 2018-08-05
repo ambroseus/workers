@@ -1,11 +1,15 @@
 const task = require("./task");
-const start = new Date();
+const { out, timing, sec } = require("./utils");
 
-const tasksTime = [1, 2, 3, 4].reduce((acc, n) => acc + task(n), 0);
+let times = [];
 
-const appTime = new Date() - start;
-console.log(`
-  sum time: ${tasksTime}ms
-  app time: ${appTime}ms
+const appTime = timing(() => {
+  times = [1, 2, 3, 4].map(task);
+});
 
-`);
+out`
+  sum time: ${sec(times.reduce((a, n) => a + n, 0))}
+  app time: ${sec(appTime)}
+
+
+  `;

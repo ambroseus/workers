@@ -1,19 +1,23 @@
 const http = require("http");
+const { out, uid, timing, sec } = require("./utils");
 const task = require("./task");
 
 const PORT = process.env.PORT || 8888;
 
 function compute() {
-  const ID = Math.floor(Math.random() * 9000) + 1000;
-  console.log(`\n[^${ID}`);
-  const start = new Date();
+  const ID = uid();
+  let times = [];
 
-  const times = [1, 2, 3, 4].map(task);
+  out`\n[^${ID}\n`;
 
-  const appTime = new Date() - start;
-  const tasksTime = times.reduce((a, n) => a + n, 0);
+  const appTime = timing(() => {
+    times = [1, 2, 3, 4].map(task);
+  });
 
-  console.log(`\n${ID} @ ${tasksTime / 1000}/${appTime / 1000}]`);
+  out`
+sum time: ${sec(times.reduce((a, n) => a + n, 0))}
+app time: ${sec(appTime)}
+  `;
 }
 
 const server = http.createServer();
@@ -25,4 +29,4 @@ server.on("request", (req, res) => {
 });
 
 server.listen(PORT);
-console.log(`starting server http://localhost:${PORT}`);
+out`starting server http://localhost:${PORT}\n`;
