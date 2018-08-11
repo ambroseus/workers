@@ -1,6 +1,6 @@
 const { cout, uid, timing, sec } = require("../utils");
 
-const TICKS = 100000;
+const TICKS = 1000000;
 const STEPS = 20;
 
 function step(color) {

@@ -1,10 +1,10 @@
 const task = require("./task");
-const { out, timing, sec } = require("./utils");
+const { out, timing, sec } = require("../utils");
 
 let times = [];
 
 const appTime = timing(() => {
-  times = [1, 2, 3, 4].map(task);
+  times = ["red", "green", "yellow", "blue"].map(task);
 });
 
 out`

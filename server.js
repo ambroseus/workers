@@ -1,6 +1,6 @@
 const http = require("http");
 const { out, uid, timing, sec } = require("./utils");
-const task = require("./task");
+const task = require("./v1-brutforce/task");
 
 const PORT = process.env.PORT || 8888;
 

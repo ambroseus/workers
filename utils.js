@@ -51,4 +51,6 @@ function timing(task, ...args) {
 }
 const sec = ms => `${ms / 1000} s`;
 
-module.exports = { out, cout, randcolor, uid, timing, sec };
+const sum = arr => arr.reduce((a, n) => a + n, 0);
+
+module.exports = { out, cout, randcolor, uid, timing, sec, sum };
